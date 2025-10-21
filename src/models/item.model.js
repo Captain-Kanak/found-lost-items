@@ -1,28 +1,52 @@
 import mongoose from "mongoose";
 
 // Define the item schema
-const itemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const itemSchema = new mongoose.Schema(
+  {
+    postType: {
+      type: String,
+      required: true,
+      enum: ["Lost", "Found"],
+    },
+    itemName: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    contactInfo: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["not-recovered", "recovered"],
+      default: "not-recovered",
+    },
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+if (mongoose.models.Item) {
+  delete mongoose.models.Item;
+}
 
 // Create the item model
 const Item = mongoose.model("Item", itemSchema);
