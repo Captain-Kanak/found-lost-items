@@ -1,10 +1,28 @@
 @import "tailwindcss";
+@tailwind utilities;
 
+/* ---------------------------------------
+   1. Base Theme Variables
+----------------------------------------*/
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* ---------------------------------------
+   2. Dark Mode Variables (via next-themes)
+   - Instead of media query, use `.dark` class
+   - next-themes toggles this class on <html>
+----------------------------------------*/
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* ---------------------------------------
+   3. Tailwind CSS Theme Variables
+   - Connect Tailwind color and font tokens
+----------------------------------------*/
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,15 +30,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ---------------------------------------
+   4. Global Element Styles
+----------------------------------------*/
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
