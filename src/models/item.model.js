@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+// Define the contact info schema
+const contactInfoSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+  },
+  { _id: false }
+);
+
 // Define the item schema
 const itemSchema = new mongoose.Schema(
   {
@@ -29,7 +48,7 @@ const itemSchema = new mongoose.Schema(
       required: true,
     },
     contactInfo: {
-      type: String,
+      type: contactInfoSchema,
       required: true,
     },
     status: {
